@@ -1,0 +1,27 @@
+{
+  "name": "process-looker",
+  "version": "1.0.0",
+  "description": "get details of process",
+  "main": "app.js",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bower": "^1.8.2",
+    "electron": "^1.8.1",
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bapinmalakar/process-looker.git"
+  },
+  "author": "biplab malakar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bapinmalakar/process-looker/issues"
+  },
+  "homepage": "https://github.com/bapinmalakar/process-looker#readme"
+}
