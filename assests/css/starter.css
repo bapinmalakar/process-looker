@@ -1,0 +1,15 @@
+.heading{
+    margin-left: 0.5%;
+    width: 100%;
+    box-shadow: 4px 27px 25px darkolivegreen;
+    background-color: brown;
+}
+.body{
+    margin-left: 0.5%;
+    margin-top: 2%;
+    height: 100%; 
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 10px -7px 28px lightseagreen;
+    background-color: darkslategrey;
+}

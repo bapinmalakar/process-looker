@@ -5,9 +5,10 @@
   "main": "app.js",
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "bower": "^1.8.2",
+    "child_process": "^1.0.2",
     "electron": "^1.8.1",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "util": "^0.10.3"
   },
   "devDependencies": {},
   "scripts": {
