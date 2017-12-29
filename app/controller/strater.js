@@ -4,7 +4,7 @@ const remote = require("electron").remote;
 remote.app.getAppPath();
 const path = require("path");
 const processHelper = require(path.resolve("app/script/process.js"));
-let processList = [];
+let processDetails = [];
 
 $(document).ready(() => {
   alert("Script loade");
@@ -15,15 +15,32 @@ $("#snapBtn").on("click", async () => {
   $("#snapBtn").text("Wait........");
   $("#snapBtn").prop("disabled", true);
   try {
-    await getProcessList();
+    let processList = await getProcessList();
+    let i = 1;
+    processDetails = [];
+    $("#progressDiv").show();
+    for (let process of processList) {
+      let processData = await processHelper.processDetails(process);
+      processDetails.push(processData);
+      let progress = i / processList.length * 100;
+      $(".progress-bar")
+        .attr("aria-valuenow", Math.round(progress))
+        .css("width", Math.round(progress).toString() + "%");
+      $(".progress-bar").text(Math.round(progress).toString() + "%");
+      i++;
+    }
+    processDetails = processHelper.filterProcessData(processDetails);
+    $("#snapBtn").text("Take Current Processes Snapshot");
+    $("#snapBtn").prop("disabled", false);
   } catch (err) {
-    alert("err3");
+    alert("Some error occured, try again!" + err);
+    $("#snapBtn").text("Take Current Processes Snapshot");
     $("#snapBtn").prop("disabled", false);
   }
 });
 async function getProcessList() {
   try {
-    processList = await processHelper.processFind();
+    let processes = await processHelper.processFind();
     let date = new Date();
     const formateDate =
       date.getHours().toString() +
@@ -31,12 +48,11 @@ async function getProcessList() {
       date.getMinutes().toString() +
       ":" +
       date.getSeconds().toString();
-    const numberOfProcess = processList.length;
     $("#snapInfo").text(
-      `SnapTime:${formateDate} Number Of Process: ${numberOfProcess}`
+      `SnapTime:${formateDate} Number Of Process: ${processes.length}`
     );
+    return processes;
   } catch (err) {
-    alert("Error2" + err);
     throw err;
   }
 }

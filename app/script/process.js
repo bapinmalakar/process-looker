@@ -28,5 +28,47 @@ module.exports = {
     } catch (err) {
       throw err;
     }
+  },
+
+  processDetails: async process => {
+    try {
+      let processDes = await exec(`tasklist /fi "pid eq ${process[1]}"`);
+      let processData = processDes.split("\r\n");
+      processData = processData[processData.length - 2];
+      processData = processData.split(" ");
+      processData = processData.filter(m => m != "");
+      processData[processData.length - 2] =
+        processData[processData.length - 2] +
+        processData[processData.length - 1];
+      processData.splice(processData.length - 1, 1);
+      return {
+        name: processData[0],
+        id: process[1],
+        port: process[2],
+        memory: processData[processData.length - 1]
+      };
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  filterProcessData: process => {
+    let filterData = [];
+    for (let items of processDetails) {
+      let key = items.name;
+      let ind = filterData.findIndex(d => key == d.name);
+      if (ind == -1) {
+        let obj = {
+          name: items.name,
+          data: [items],
+          count: 1
+        };
+        filterData.push(obj);
+      } else {
+        filterData[ind].data.push(items);
+        filterData[ind].count =  filterData[ind].data.length;
+      }
+    }
+    return filterData;
   }
 };
