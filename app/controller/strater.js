@@ -64,7 +64,6 @@ function prepareList() {
 //
 
 function listClick(id) {
-  alert(id);
   let data = processDetails[id];
   $(".processHeader h2").text(data.name);
   $(".processBody").empty();
