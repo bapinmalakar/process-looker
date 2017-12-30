@@ -66,9 +66,19 @@ module.exports = {
         filterData.push(obj);
       } else {
         filterData[ind].data.push(items);
-        filterData[ind].count =  filterData[ind].data.length;
+        filterData[ind].count = filterData[ind].data.length;
       }
     }
     return filterData;
+  },
+
+  processKill: async pid => {
+    try {
+      alert(pid);
+      let output = await exec("taskkill /pid " + pid + " /f");
+    } catch (err) {
+      alert(err);
+      throw err;
+    }
   }
 };

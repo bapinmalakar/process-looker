@@ -9,7 +9,7 @@
     <!-- div for headeer options -->
     <div class="row heading">
         <div class="row" style="margin-left: 15;">
-            <h3 id="snapInfo">SnapTime: 00.00.00 Number Of Process: 0                Different type of Process: 0</h3>
+            <h3 id="snapInfo">SnapTime: 00.00.00 Number Of Process: 0 Different type of Process: 0</h3>
             <button id="snapBtn" class="btn btn-warning" type="button" style="margin-bottom: 1%;">Take Current Processes Snapshot</button>
         </div>
         <div class="row" style="margin-left: 15;margin-top: 3%;" id="progressDiv">
@@ -19,17 +19,24 @@
                 </div>
             </div>
         </div>
-       
+
     </div>
 
     <!-- Div for list and result -->
     <div class="row body">
-        <div class="col-sm-3" style="border-right:solid;height: 615px;">
+        <div class="col-sm-3 processlist" style="border-right:solid;height: 615px;">
             <ul id="process-list" style="height: 615px; overflow: auto;width:100%;margin-left: 0px;">
-                
+
             </ul>
         </div>
-        <div class="col-sm-7"></div>
+        <div class="col-sm-9">
+            <div class="row processHeader" style="text-align: center">
+                <h2>Nodejs.exe</h2>
+            </div>
+            <div class="row processBody" style="padding-top: 1%;text-align: center;height: 600px;overflow-y:hideden; overflow-x: auto; width: 100%;">
+                
+            </div>
+        </div>
     </div>
     <script src="../controller/strater.js"></script>
 </body>

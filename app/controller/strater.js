@@ -10,6 +10,7 @@ let snapTime, processNumber;
 $(document).ready(() => {
   $("#progressDiv").hide();
 });
+
 $("#snapBtn").on("click", async () => {
   $("#snapBtn").text("Wait........");
   $("#snapBtn").prop("disabled", true);
@@ -38,11 +39,14 @@ $("#snapBtn").on("click", async () => {
     $("#snapBtn").prop("disabled", false);
   }
 });
+
 function prepareList() {
   $("#snapInfo").text(
-    `SnapTime:${snapTime} Number Of Process: ${processNumber}     Different type of Process: ${processDetails.length}`
+    `SnapTime:${snapTime} Number Of Process: ${processNumber}     Different type of Process: ${
+      processDetails.length
+    }`
   );
-  let color = ['#00008b', "white"];
+  let color = ["#00008b", "white"];
   let i = 0;
   $("ul").empty();
   let ul = $("ul");
@@ -50,10 +54,34 @@ function prepareList() {
     ul.append(
       `<li id="list-${i}" title="${item.count} of process ${
         item.name
-      }"><b><span style="color: ${color[i % 2]}; cursor: pointer;">${item.name}     ${
-        item.count
-      }</span></b></li>`
+      }" onclick="listClick(${i})"><b><span style="color: ${
+        color[i % 2]
+      }; cursor: pointer;">${item.name}     ${item.count}</span></b></li>`
     );
+    i++;
+  }
+}
+//
+
+function listClick(id) {
+  alert(id);
+  let data = processDetails[id];
+  $(".processHeader h2").text(data.name);
+  $(".processBody").empty();
+  let i = 0;
+  for (let item of data.data) {
+    let divString = `<div class="row" style="padding-top: 1%;width: 100%"><h4 style="color: white;"><span>${
+      item.name
+    }</span><span style="padding-left: 2%;">Process Id: ${
+      item.id
+    }</span><span style="padding-left: 2%;">Port: ${
+      item.port
+    }</span><span style="padding-left: 2%;">Memory: ${
+      item.memory
+    }</span>
+    </h4>
+  </div>`;
+    $(".processBody").append(divString);
     i++;
   }
 }
