@@ -1,9 +1,10 @@
 "use strict";
+alert('run');
 let $ = require("jquery");
 const remote = require("electron").remote;
 remote.app.getAppPath();
 const path = require("path");
-const processHelper = require(path.resolve("app/script/process.js"));
+const processHelper = require(path.resolve(__dirname , "../script/process.js"));
 let processDetails = [];
 let snapTime, processNumber;
 
