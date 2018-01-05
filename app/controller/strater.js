@@ -1,5 +1,4 @@
 "use strict";
-alert('run');
 let $ = require("jquery");
 const remote = require("electron").remote;
 remote.app.getAppPath();
